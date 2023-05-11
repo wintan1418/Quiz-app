@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  quizo: one
+  content: MyText
+  answer1: MyString
+  answer2: MyString
+  answer3: MyString
+  answer4: MyString
+  correct_answer: 1
+  image: MyString
+
+two:
+  quizo: two
+  content: MyText
+  answer1: MyString
+  answer2: MyString
+  answer3: MyString
+  answer4: MyString
+  correct_answer: 1
+  image: MyString

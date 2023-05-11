@@ -1,0 +1,22 @@
+<div class="container mt-3">
+  <% if flash[:notice].present? %>
+    <div class="alert alert-success">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+
+  <h1 class="mb-4">Quizos</h1>
+
+  <div id="quizos">
+    <% @quizos.each do |quizo| %>
+      <div class="card mb-3">
+        <div class="card-body">
+          <%= render quizo %>
+          <%= link_to "Show this quizo", quizo, class: "btn btn-primary mt-3" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <%= link_to "New quizo", new_quizo_path, class: "btn btn-success" %>
+</div>
