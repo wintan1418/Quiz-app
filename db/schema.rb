@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_05_02_210228) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -40,7 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_02_210228) do
   end
 
   create_table "quesitions", force: :cascade do |t|
-    t.integer "quizo_id", null: false
+    t.bigint "quizo_id", null: false
     t.text "content"
     t.string "answer1"
     t.string "answer2"
@@ -60,8 +63,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_02_210228) do
   end
 
   create_table "submissions", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "quizo_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "quizo_id", null: false
     t.float "score"
     t.json "user_answers"
     t.datetime "created_at", null: false
