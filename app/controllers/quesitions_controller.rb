@@ -25,7 +25,7 @@ class QuesitionsController < ApplicationController
 
     respond_to do |format|
       if @quesition.save
-        format.html { redirect_to quesition_url(@quesition), notice: "Quesition was successfully created." }
+        format.html { redirect_to questions_index_path, notice: "Quesition was successfully created." }
         format.json { render :show, status: :created, location: @quesition }
       else
         format.html { render :new, status: :unprocessable_entity }

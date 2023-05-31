@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get 'submissions/create'
   get 'submissions/show'
+  get 'quesitions/index', to: 'quesitions#index', as: 'quesitions_index'
+
   
   
   devise_for :users
@@ -13,4 +15,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   end
    root "quizos#index"
+   resources :contestants do
+    post :pick_quesition, on: :member
+  end
 end
