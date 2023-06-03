@@ -14,6 +14,7 @@ class QuizosController < ApplicationController
   def new
     @quizo = Quizo.new
     @quizo.quesitions.build
+    @quizo.contestants.build
   end
 
   # GET /quizos/1/edit
@@ -69,6 +70,11 @@ class QuizosController < ApplicationController
       params.require(:quizo).permit(
         :title, 
         :image, 
+        contestants_attributes: [
+          :id,
+          :_destroy,
+          :name
+        ],
         quesitions_attributes: [
           :id, 
           :_destroy, 
@@ -78,6 +84,8 @@ class QuizosController < ApplicationController
           :answer3, 
           :answer4, 
           :correct_answer, 
-          :image])
+          :image
+        ]
+      )
     end
-end
+  end

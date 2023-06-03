@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_31_112308) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_31_160154) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -46,6 +46,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_31_112308) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "quizo_id", null: false
+    t.index ["quizo_id"], name: "index_contestants_on_quizo_id"
   end
 
   create_table "picked_quesitions", force: :cascade do |t|
@@ -102,6 +104,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_31_112308) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "contestants", "quizos"
   add_foreign_key "picked_quesitions", "contestants"
   add_foreign_key "picked_quesitions", "quesitions"
   add_foreign_key "quesitions", "quizos"

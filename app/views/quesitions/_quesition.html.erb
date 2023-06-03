@@ -39,4 +39,8 @@
     <%= quesition.image %>
   </p>
 
+  <%= form_with(model: contestant) do |form| %>
+    <%= form.hidden_field :quesition_id, value: quesition.id %>
+    <%= form.submit "Pick Question", class: "btn btn-primary" %>
+  <% end %>
 </div>

@@ -9,8 +9,25 @@
     <label for="quizo_description">Description</label>
     <%= form.text_area :description, id: "quizo_description", class: "form-control" %>
   </div>
-  
-  <template data-nested-form-target="template">
+
+  <div data-nested-form-target="target">
+    <% quizo.contestants.each do |contestant| %>
+      <p>Contestant: <%= contestant.name %></p>
+    <% end %>
+  </div>
+
+  <template data-nested-form-target="contestant-template">
+    <div class="nested-form-wrapper">
+      <%= form.fields_for :contestants, Contestant.new, child_index: "NEW_RECORD" do |contestant_fields| %>
+        <%= render "contestant_fields", f: contestant_fields %>
+      <% end %>
+    </div>
+  </template>
+
+  <div data-nested-form-target="target"></div>
+  <button type="button" data-action="nested-form#add" data-target="nested-form-template.contestant-template" class="btn btn-secondary mb-3">Add contestant</button>
+
+  <template data-nested-form-target="nested-form-template">
     <div class="nested-form-wrapper">
       <%= form.fields_for :quesitions, Quesition.new, child_index: "NEW_RECORD" do |quesition_fields| %>
         <%= render "quesition_fields", f: quesition_fields %>
@@ -19,6 +36,6 @@
   </template>
 
   <div data-nested-form-target="target"></div>
-  <button type="button" data-action="nested-form#add" class="btn btn-secondary mb-3">Add Question</button>
+  <button type="button" data-action="nested-form#add" data-target="nested-form-template.quesition-template" class="btn btn-secondary mb-3">Add question</button>
   <%= form.submit "Submit Quiz", class: "btn btn-primary" %>
 <% end %>

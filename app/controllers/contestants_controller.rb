@@ -1,25 +1,26 @@
 class ContestantsController < ApplicationController
     def index
-        @contestants = Contenstant.all
+        @contestants = Contestant.all
     end
 
     def show
         @contestant = Contestant.find(params[:id])
     end
     def new
-        @contestant = Contestant.new
+        @quizo = Quizo.find(params[:quizo_id])
+        @contestant = @quizo.contestants.build
     end
 
-
- def create
-    @contestant = Contestant.new(contestant_params)
-    if @contestant.save
-      redirect_to @contestant, notice: "Contestant was successfully created."
-    else
-      render :new
-    end
-  end
-
+    def create
+        @quizo = Quizo.find(params[:quizo_id])
+        @contestant = @quizo.contestants.build(contestant_params)
+      
+        if @contestant.save
+          redirect_to @quizo, notice: "Contestant created successfully."
+        else
+          render :new
+        end
+      end
   def pick_quesition
     @contestant = Contestant.find(params[:id])
     @quesition = Quesition.find(params[:quesition_id])
