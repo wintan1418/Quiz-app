@@ -4,11 +4,24 @@ class QuesitionsController < ApplicationController
   # GET /quesitions or /quesitions.json
   def index
     @quesitions = Quesition.all
+    @contestant = Contestant.new
+    @contestant = Contestant.find(params[:contestant_id])
+    @quizo = Quizo.find(params[:quizo_id])
   end
+  
 
   # GET /quesitions/1 or /quesitions/1.json
   def show
+    @quizo = Quizo.find(params[:quizo_id])
+    @contestant = Contestant.find(params[:contestant_id])
+    @quesition = Quesition.find(params[:id])
+    @contestant_answer = ContestantAnswer.find_by(contestant: @contestant, quesition: @quesition)
+    @submission = Submission.new(quizo: @quizo, contestant: @contestant, quesition: @quesition)
   end
+  
+  
+  
+  
 
   # GET /quesitions/new
   def new
@@ -25,7 +38,7 @@ class QuesitionsController < ApplicationController
 
     respond_to do |format|
       if @quesition.save
-        format.html { redirect_to quesition_url(@quesition), notice: "Quesition was successfully created." }
+        format.html { redirect_to questions_index_path, notice: "Quesition was successfully created." }
         format.json { render :show, status: :created, location: @quesition }
       else
         format.html { render :new, status: :unprocessable_entity }

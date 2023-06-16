@@ -1,0 +1,7 @@
+<h1>contestants</h1>
+
+<% @contestants.each_with_index do |contestant, index| %>
+  <div class="contestant-button">
+    <%= link_to "contestant #{index + 1}", contestant_path(contestant) %>
+  </div>
+<% end %>

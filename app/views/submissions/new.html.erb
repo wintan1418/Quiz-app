@@ -1,0 +1,9 @@
+<h1>Pick Contestant Name</h1>
+
+<%= form_with(model: @submission, url: new_submission_path, method: :post) do |form| %>
+  <%= form.label :contestant_name, "Name" %>
+  <%= form.text_field :contestant_name %>
+  <%= form.hidden_field :quizo_id %>
+  <%= form.hidden_field :quesition_id %>
+  <%= form.submit "Submit" %>
+<% end %>

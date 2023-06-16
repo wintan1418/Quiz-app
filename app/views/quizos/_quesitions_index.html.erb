@@ -1,0 +1,7 @@
+<h1>Quiz Questions</h1>
+
+<% @quesitions.each_with_index do |quesition, index| %>
+  <div class="question-button">
+    <%= link_to "Question #{index + 1}", quesition_path(quesition) %>
+  </div>
+<% end %>

@@ -1,10 +1,7 @@
 class Submission < ApplicationRecord
-  belongs_to :user
   belongs_to :quizo
+  belongs_to :quesition
+  belongs_to :contestant
 
-  after_initialize :init
-
-  def init
-    self.user_answers ||= ()
-  end
+  attribute :selected_answer_id, :integer
 end
