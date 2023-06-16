@@ -1,30 +1,27 @@
-<h2>Your Quiz Score: <%= @submission.score.round(2) %>%</h2>
-<% @quizo.quesitions.each do |quesition| %>
-  <div class="card mb-4">
-    <div class="card-body">
-      <h5 class="card-title">Quesition:</h5>
-      <p class="card-text"><%= quesition.content %></p>
-      <% if quesition.image.attached? %>
-        <%= image_tag quesition.image, class: "img-fluid mb-3" %>
-      <% end %>
-      <% 1.upto(4) do |answer_index| %>
-        <% selected_answer = @submission.user_answers[quesition.id.to_s].to_i %>
-        <div class="form-check">
-          <% if answer_index == quesition.correct_answer %>
-            <div class="alert alert-success">
-              <strong>Correct answer: </strong> <%= quesition.send("answer#{answer_index}") %>
-            </div>
-          <% elsif answer_index == selected_answer %>
-            <div class="alert alert-danger">
-              <strong>Your incorrect answer: </strong> <%= quesition.send("answer#{answer_index}") %>
-            </div>
-          <% else %>
-            <div class="alert alert-secondary">
-              <%= quesition.send("answer#{answer_index}") %>
-            </div>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
+<h2>Your Quiz Score: <%= @submission.score.round(2) %></h2>
+<div class="card mb-4">
+  <div class="card-body">
+    <h5 class="card-title">Question:</h5>
+    <p class="card-text"><%= @quesition.content %></p>
+    <% if @quesition.image.attached? %>
+      <%= image_tag @quesition.image, class: "img-fluid mb-3" %>
+    <% end %>
+    <% selected_answer_id = @submission.selected_answer_id %>
+    <% correct_answer = @quesition.correct_answer %>
+    <% if selected_answer_id.present? %>
+      <div class="alert <%= selected_answer_id == correct_answer ? 'alert-success' : 'alert-danger' %>">
+        <% if selected_answer_id == correct_answer %>
+          <strong>Selected Answer: </strong> <%= @quesition.send("answer#{selected_answer_id}") %>
+        <% else %>
+          <strong>Your incorrect answer: </strong> <%= @quesition.send("answer#{selected_answer_id}") %>
+          <br>
+          <strong>Correct answer: </strong> <span class="text-success"><%= @quesition.send("answer#{correct_answer}") %></span>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="alert alert-warning">
+        <strong>No answer submitted for this question.</strong>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

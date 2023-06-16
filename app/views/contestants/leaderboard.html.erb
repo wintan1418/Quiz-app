@@ -1,0 +1,17 @@
+<h1>Contestant Leaderboard</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Points</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @contestants.each do |contestant| %>
+      <tr>
+        <td><%= contestant.name %></td>
+        <td><%= contestant.points %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,10 @@
+<% @quesitions.each do |quesition| %>
+    <div class="card mb-4">
+      <div class="card-body">
+        <h5 class="card-title">Question:</h5>
+        <p class="card-text">Question ID: <%= quesition.id %></p>
+        <%= link_to "View Question", view_quizo_quesition_path(@quizo, quesition), class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+  

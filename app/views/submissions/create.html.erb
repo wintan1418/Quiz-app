@@ -1,2 +1,5 @@
-<h1>Submissions#create</h1>
-<p>Find me in app/views/submissions/create.html.erb</p>
+<h1>Submission Details</h1>
+<p>Contestant: <%= @submission.contestant.name %></p>
+<p>Question: <%= @submission.quesition.content %></p>
+<p>Selected Answer: <%= @submission.selected_answer %></p>
+<p>Score: <%= @submission.score %></p>
