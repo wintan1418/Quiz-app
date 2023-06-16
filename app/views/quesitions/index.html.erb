@@ -1,15 +1,13 @@
-<p style="color: green"><%= notice %></p>
 
-<h1>Quesitions</h1>
+<% @quesitions.each do |quesition| %>
+  <div class="card mb-4">
+    <div class="card-body">
+      <h5 class="card-title">Question:</h5>
+      <p class="card-text">Question ID: <%= quesition.id %></p>
+      <%= link_to "View Question", quizo_contestant_quesition_path(@quizo, @contestant, quesition), class: "btn btn-primary" %>
 
-<div id="quesitions">
-  <% @quesitions.each do |quesition| %>
-    <%= render quesition %>
-    <p>
-    <%= link_to "Show this quesition", quesitions_index_path(quesition) %>
 
-    </p>
-  <% end %>
-</div>
 
-<%= link_to "New quesition",  new_quizo_path %>
+    </div>
+  </div>
+<% end %>

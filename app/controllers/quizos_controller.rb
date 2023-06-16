@@ -8,14 +8,24 @@ class QuizosController < ApplicationController
 
   # GET /quizos/1 or /quizos/1.json
   def show
+    @quizo = Quizo.find(params[:id])
+    @contestants = @quizo.contestants.order(points: :desc)
+    @contestant = Contestant.new
+    @submission = Submission.new(quizo: @quizo) # Create a new submission for the quizo
   end
-
+  
   # GET /quizos/new
   def new
     @quizo = Quizo.new
     @quizo.quesitions.build
     @quizo.contestants.build
   end
+
+  def contestants_index
+    @quizo = Quizo.find(params[:id])
+    @contestants = @quizo.contestants
+  end
+  
 
   # GET /quizos/1/edit
   def edit
