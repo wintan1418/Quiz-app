@@ -45,5 +45,7 @@ Rails.application.routes.draw do
   get '/contestants/leaderboard', to: 'contestants#leaderboard'
   root "quizos#index"
   get 'new_submission', to: 'submissions#new', as: 'custom_new_submission'
+  get 'quizos/:id/leaderboard', to: 'quizos#leaderboard', as: 'quizo_leaderboard'
+
 end
 

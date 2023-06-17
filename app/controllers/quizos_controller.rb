@@ -20,6 +20,15 @@ class QuizosController < ApplicationController
     @quizo.quesitions.build
     @quizo.contestants.build
   end
+  def leaderboard
+    @quizo = Quizo.find(params[:id])
+    @leaderboard = Submission.where(quizo_id: @quizo.id)
+                             .joins(:contestant)
+                             .group('contestants.id')
+                             .select('contestants.name, SUM(submissions.score) as total_score')
+                             .order('total_score DESC')
+  end
+  
 
   def contestants_index
     @quizo = Quizo.find(params[:id])

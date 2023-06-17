@@ -1,0 +1,17 @@
+<h1 class="mt-5">Quizo Leaderboard</h1>
+<table class="table table-striped table-hover mt-4">
+  <thead>
+    <tr>
+      <th>Contestant</th>
+      <th>Total Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @leaderboard.each do |leaderboard_entry| %>
+      <tr>
+        <td><%= leaderboard_entry.name %></td>
+        <td><%= leaderboard_entry.total_score %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

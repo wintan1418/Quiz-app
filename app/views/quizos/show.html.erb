@@ -19,31 +19,12 @@
   <li>
   <%= link_to contestant.name, quizo_contestant_quesitions_path(@quizo, contestant) %>
 
-
-
-
   </li>
 <% end %>
 
-
-
 </ul>
 
-<% @quizo.quesitions.each do |quesition| %>
-  <% if quesition.available? %>
-    <div class="card mb-4">
-      <div class="card-body">
-        <h5 class="card-title">Question:</h5>
-        <p class="card-text">Question ID: <%= quesition.id %></p>
-        <%= link_to "View Question", view_quizo_quesition_path(@quizo, quesition, submission_id: @submission.id, contestant_id: @contestant.id), class: "btn btn-primary" %>
-
-
-
-
-      </div>
-    </div>
-  <% end %>
-<% end %>
+<%= link_to 'View Leaderboard', quizo_leaderboard_path(@quizo), class: "btn btn-primary mt-4" %>
 
 
 
