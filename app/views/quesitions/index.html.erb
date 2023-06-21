@@ -1,11 +1,14 @@
 <% counter = 1 %>
 <% @quizo.quesitions.each do |quesition| %>
-  <div class="card mb-4">
+  <div class="card mb-4 <%= quesition.submitted? ? 'inactive' : '' %>">
     <div class="card-body">
       <h5 class="card-title">Question <%= counter %>:</h5>
       
-
-      <%= link_to "View Question", view_quizo_quesition_path(@quizo, quesition,  contestant_id: @contestant.id), class: "btn btn-primary" %>
+      <% if quesition.submitted? %>
+        <p>This question has been answered.</p>
+      <% else %>
+        <%= link_to "View Question", view_quizo_quesition_path(@quizo, quesition, contestant_id: @contestant.id), class: "btn btn-primary" %>
+      <% end %>
     </div>
   </div>
   <% counter += 1 %>

@@ -8,4 +8,7 @@ class Quesition < ApplicationRecord
   def available?
     ContestantAnswer.where(quesition_id: id).count.zero?
   end
+  def submitted?
+    Submission.exists?(quesition_id: id)
+  end
 end

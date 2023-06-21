@@ -46,6 +46,15 @@ class QuizosController < ApplicationController
     end
   end
 
+  def leaderboard
+    @quizo = Quizo.find(params[:id])
+    @leaderboard = Submission.where(quizo_id: @quizo.id)
+                             .joins(:contestant)
+                             .group('contestants.id')
+                             .select('contestants.name, SUM(submissions.score) as total_score')
+                             .order('total_score DESC')
+  end
+  
   # PATCH/PUT /quizos/1 or /quizos/1.json
   def update
     respond_to do |format|

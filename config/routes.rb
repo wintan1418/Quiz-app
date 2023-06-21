@@ -1,27 +1,3 @@
-# Rails.application.routes.draw do
-#   devise_for :users
-
-#   resources :quizos do
-#     resources :quesitions, except: [:edit] do
-#       member do
-#         get 'view', to: 'quesitions#show'
-#         get 'edit', to: 'quesitions#edit', as: 'edit_quizo_quesition'
-#       end
-#     end
-
-#     resources :contestants, only: [:new, :create] do
-#       resources :submissions, only: [:show]
-#     end
-#   end
-
-#   resources :submissions, only: [:new, :create]
-
-#   get 'quesitions/index', to: 'quesitions#index', as: 'quesitions_index'
-#   get '/contestants/leaderboard', to: 'contestants#leaderboard'
-#   root "quizos#index"
-#   get 'new_submission', to: 'submissions#new', as: 'custom_new_submission'
-# end
-
 Rails.application.routes.draw do
   devise_for :users
 
@@ -45,5 +21,6 @@ Rails.application.routes.draw do
   get '/contestants/leaderboard', to: 'contestants#leaderboard'
   root "quizos#index"
   get 'new_submission', to: 'submissions#new', as: 'custom_new_submission'
-end
+  get 'quizos/:id/leaderboard', to: 'quizos#leaderboard', as: 'quizo_leaderboard'
 
+end
