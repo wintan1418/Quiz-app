@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :quizos do
+    member do
+      delete 'remove_contestant/:contestant_id', to: 'quizos#remove_contestant', as: 'remove_contestant'
+    end
     resources :contestants, only: [:new, :create] do
       resources :quesitions, only: [:index,:show] # Nested within contestants, only need index action
       resources :submissions, only: [:show]

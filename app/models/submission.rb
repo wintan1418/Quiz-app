@@ -1,5 +1,5 @@
 class Submission < ApplicationRecord
-  belongs_to :quizo
+  belongs_to :quizo 
   belongs_to :quesition
   belongs_to :contestant
 

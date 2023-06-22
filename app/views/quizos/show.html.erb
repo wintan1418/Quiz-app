@@ -1,5 +1,3 @@
-
-
 <%= form_with(model: [@quizo, @contestant], url: quizo_contestants_path(@quizo), class: "form") do |form| %>
   <div class="form-group">
     <%= form.label :name %>
@@ -11,31 +9,16 @@
   </div>
 <% end %>
 
-<p style="color: green"><%= notice %></p>
+<p style="color: green; margin-top: 10px;"><%= notice %></p>
 
 <h1>Contestants:</h1>
-<ul>
-<% @quizo.contestants.each do |contestant| %>
-  <li>
-  <%= link_to contestant.name, quizo_contestant_quesitions_path(@quizo, contestant) %>
-
-
-
-
-  </li>
-<% end %>
-
+<ul class="list-group">
+  <% @quizo.contestants.each do |contestant| %>
+    <li class="list-group-item">
+      <%= link_to contestant.name, quizo_contestant_quesitions_path(@quizo, contestant), class: "btn btn-success btn-oval" %>
+      <%= button_to "Remove", remove_contestant_quizo_path(@quizo, contestant), method: :delete, data: { confirm: 'Are you sure you want to remove this contestant?' }, class: "btn btn-danger btn-oval" %>
+    </li>
+  <% end %>
 </ul>
 
 <%= link_to 'View Leaderboard', quizo_leaderboard_path(@quizo), class: "btn btn-primary mt-4" %>
-
-
-
-
-
-
-
-
-
-
-

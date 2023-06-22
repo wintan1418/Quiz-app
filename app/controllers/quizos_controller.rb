@@ -70,13 +70,26 @@ class QuizosController < ApplicationController
 
   # DELETE /quizos/1 or /quizos/1.json
   def destroy
+    @quizo.submissions.each do |submission|
+      submission.update(quesition_id: nil)
+      submission.destroy
+    end
     @quizo.destroy
-
     respond_to do |format|
       format.html { redirect_to quizos_url, notice: "Quizo was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
+  
+  
+  # app/controllers/quizos_controller.rb
+def remove_contestant
+  @quizo = Quizo.find(params[:id])
+  contestant = @quizo.contestants.find(params[:contestant_id])
+  contestant.destroy
+  redirect_to @quizo, notice: "Contestant removed successfully."
+end
+
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.

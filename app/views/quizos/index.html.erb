@@ -5,14 +5,16 @@
     </div>
   <% end %>
 
-  <h1 class="mb-4">Quizos</h1>
+  <h1 class="mb-4">Quiz</h1>
 
   <div id="quizos">
     <% @quizos.each do |quizo| %>
       <div class="card mb-3">
         <div class="card-body">
           <%= render quizo %>
-          <%= link_to "Show this quizo", quizo, class: "btn btn-primary mt-3" %>
+          <%= link_to "Start quiz", quizo, class: "btn btn-primary mt-3" %>
+          
+          
         </div>
       </div>
     <% end %>
