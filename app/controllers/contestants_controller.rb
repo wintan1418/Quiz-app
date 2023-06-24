@@ -30,7 +30,24 @@ class ContestantsController < ApplicationController
       def leaderboard
         @contestants = Contestant.all.order(points: :desc)
       end
+      def edit
+        @quizo = Quizo.find(params[:quizo_id])
+        @contestant = Contestant.find(params[:id])
+      end
       
+    
+      def update
+        @quizo = Quizo.find(params[:quizo_id])
+        @contestant = Contestant.find(params[:id])
+        
+        if @contestant.update(contestant_params)
+          redirect_to quizo_path(@quizo), notice: "Contestant updated successfully."
+
+
+        else
+          render :edit
+        end
+      end
       def pick_quesition
         @contestant = Contestant.find(params[:id])
         @quesition = Quesition.find(params[:quesition_id])

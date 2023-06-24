@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     member do
       delete 'remove_contestant/:contestant_id', to: 'quizos#remove_contestant', as: 'remove_contestant'
     end
-    resources :contestants, only: [:new, :create] do
+    resources :contestants, only: [:new, :create,:edit,:update] do
       resources :quesitions, only: [:index,:show] # Nested within contestants, only need index action
       resources :submissions, only: [:show]
       post 'pick_quesition', on: :member # Add the pick_quesition action to contestants
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
       end
     end
   end
-
+ 
   resources :submissions, only: [:new, :create,:show]
   get 'quesitions/index', to: 'quesitions#index', as: 'quesitions_index'
   get '/contestants/leaderboard', to: 'contestants#leaderboard'

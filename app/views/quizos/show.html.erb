@@ -12,13 +12,20 @@
 <p style="color: green; margin-top: 10px;"><%= notice %></p>
 
 <h1>Contestants:</h1>
-<ul class="list-group">
+<div class="card mb-3">
   <% @quizo.contestants.each do |contestant| %>
-    <li class="list-group-item">
-      <%= link_to contestant.name, quizo_contestant_quesitions_path(@quizo, contestant), class: "btn btn-success btn-oval" %>
-      <%= button_to "Remove", remove_contestant_quizo_path(@quizo, contestant), method: :delete, data: { confirm: 'Are you sure you want to remove this contestant?' }, class: "btn btn-danger btn-oval" %>
-    </li>
+    <div class="card-body">
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="btn-group mr-1">
+          <%= link_to contestant.name, quizo_contestant_quesitions_path(@quizo, contestant), class: "btn mr-1 btn-success btn-oval " %> 
+          <%= link_to "Edit", edit_quizo_contestant_path(@quizo, contestant), class: "btn mr-1 btn-warning btn-oval" %>
+        </div>
+        <%= button_to "Remove", remove_contestant_quizo_path(@quizo, contestant), method: :delete, data: { confirm: 'Are you sure you want to remove this contestant?' }, class: "btn btn-danger btn-oval" %>
+      </div>
+    </div>
   <% end %>
-</ul>
+</div>
+
+
 
 <%= link_to 'View Leaderboard', quizo_leaderboard_path(@quizo), class: "btn btn-primary mt-4" %>

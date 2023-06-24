@@ -1,0 +1,11 @@
+<!-- app/views/contestants/edit.html.erb -->
+<h1>Edit Contestant</h1>
+
+<%= form_with(model: [@quizo, @contestant], url: quizo_contestant_path(@quizo, @contestant), method: :patch, class: "form") do |form| %>
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+  <%= form.submit "Update Contestant", class: "btn btn-primary" %>
+<% end %>

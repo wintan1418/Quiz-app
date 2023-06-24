@@ -1,0 +1,13 @@
+<%= form_with(model: [@quizo, @contestant], url: quizo_contestants_path(@quizo), class: "form") do |form| %>
+    <div class="form-group">
+      <%= form.label :name %>
+      <%= form.text_field :name, class: "form-control" %>
+    </div>
+  
+    <div class="form-group">
+      <%= form.submit 'edit Contestant', class: "btn btn-primary" %>
+    </div>
+  <% end %>
+  
+  <p style="color: green; margin-top: 10px;"><%= notice %></p>
+  
