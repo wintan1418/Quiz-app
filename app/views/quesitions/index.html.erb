@@ -23,7 +23,7 @@
             <p>This question has been answered.</p>
           <% else %>
             <%= link_to "View Question", view_quizo_quesition_path(@quizo, quesition, contestant_id: @contestant.id), class: "btn btn-primary" %>
-            <%= button_to "Delete Question", quizo_quesition_path(@quizo, quesition), method: :delete, data: { confirm: 'Are you sure you want to delete this question?' }, class: "btn btn-danger" %>
+            
           <% end %>
         </div>
       </div>
