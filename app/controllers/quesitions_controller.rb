@@ -62,14 +62,19 @@ class QuesitionsController < ApplicationController
 
   # DELETE /quesitions/1 or /quesitions/1.json
   def destroy
+    @quizo = Quizo.find(params[:quizo_id])
+    question_number = params[:id].to_i
+    @quesition = @quizo.quesitions.find_by(id: question_number)
+    @quesition.submissions.destroy_all # Delete associated submissions
     @quesition.destroy
-
+  
     respond_to do |format|
-      format.html { redirect_to quesitions_url, notice: "Quesition was successfully destroyed." }
-      format.json { head :no_content }
+      format.turbo_stream { redirect_to quizo_quesitions_path(@quizo), notice: "Question was successfully destroyed." }
     end
   end
-
+  
+  
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_quesition
