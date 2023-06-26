@@ -1,17 +1,51 @@
-<% counter = 1 %>
-<% @quizo.quesitions.each do |quesition| %>
-  <div class="card mb-4 <%= quesition.submitted? ? 'inactive' : '' %>">
-    <div class="card-body">
-      <h5 class="card-title">Question <%= counter %>:</h5>
-      
-      <% if quesition.submitted? %>
-        <p>This question has been answered.</p>
-      <% else %>
-        <%= link_to "View Question", view_quizo_quesition_path(@quizo, quesition, contestant_id: @contestant.id), class: "btn btn-primary" %>
-      <% end %>
+<div class="container mt-3">
+  <% if flash[:notice].present? %>
+    <div class="alert alert-success">
+      <%= flash[:notice] %>
     </div>
+  <% end %>
+
+  <h1 class="mb-4" style="font-family: 'Arial', sans-serif; font-size: 36px; color: #333; text-align: center; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">NMGS QUIZ IBADAN COMPETITION</h1>
+
+  <div class="search-bar">
+    <label for="search-input">Search Questions:</label>
+    <input type="text" id="search-input" placeholder="Enter question number">
   </div>
-  <% counter += 1 %>
-<% end %>
 
+  <div id="quizos">
+    <% counter = 1 %>
+    <% @quizo.quesitions.each do |quesition| %>
+      <div class="card mb-4 <%= quesition.submitted? ? 'inactive' : '' %>" data-question-number="<%= counter %>">
+        <div class="card-body">
+          <h5 class="card-title">Question <%= counter %>:</h5>
+          
+          <% if quesition.submitted? %>
+            <p>This question has been answered.</p>
+          <% else %>
+            <%= link_to "View Question", view_quizo_quesition_path(@quizo, quesition, contestant_id: @contestant.id), class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+      <% counter += 1 %>
+    <% end %>
+  </div>
 
+  <%= link_to "New quiz", new_quizo_path, class: "btn btn-success" %>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#search-input').on('input', function() {
+      var input = $(this).val().toLowerCase();
+      $('.card').each(function() {
+        var questionNumber = $(this).data('question-number').toString();
+        if (questionNumber.indexOf(input) !== -1) {
+          $(this).show();
+        } else {
+          $(this).hide();
+        }
+      });
+    });
+  });
+</script>
