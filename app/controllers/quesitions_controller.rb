@@ -15,6 +15,7 @@ class QuesitionsController < ApplicationController
     @quizo = Quizo.find(params[:quizo_id])
     @contestant = Contestant.find(params[:contestant_id])
     @quesition = Quesition.find(params[:id])
+    @quesition_number = @quizo.quesitions.index(@quesition) + 1
     @contestant_answer = ContestantAnswer.find_by(contestant: @contestant, quesition: @quesition)
     @submission = Submission.new(quizo: @quizo, contestant: @contestant, quesition: @quesition)
   end

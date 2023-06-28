@@ -13,7 +13,7 @@
         <% if selected_answer_id == correct_answer %>
           <strong>Selected Answer: </strong> <%= @quesition.send("answer#{selected_answer_id}") %>
         <% else %>
-          <strong>Your incorrect answer: </strong> <%= @quesition.send("answer#{selected_answer_id}") %>
+          <strong> Incorrect answer: </strong> <%= @quesition.send("answer#{selected_answer_id}") %>
           <br>
           <strong>Correct answer: </strong> <span class="text-success"><%= @quesition.send("answer#{correct_answer}") %></span>
         <% end %>

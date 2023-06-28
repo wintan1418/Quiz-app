@@ -2,33 +2,33 @@
 
 <div class="card">
   <div class="card-body">
-    <h3 class="card-title">Question:</h3>
-    <p class="card-text">Question ID: <%= @quesition.id %></p>
-    <p class="card-text">Content: <%= @quesition.content %></p>
+    <p class="card-text" style="font-weight: bold; font-size: 24px;">Question <%= @quesition_number %>:</p>
+    <p class="card-text" style="font-weight: bold; font-size: 24px;">Content: <%= @quesition.content %></p>
 
     <div id="timer">
-  <span id="timer-text">Time remaining:</span>
-  <span id="timer-counter">60</span> seconds
-</div>
-
-
-<%= form_with(model: @submission, url: submissions_path(quizo_id: @quizo.id, contestant_id: @contestant.id,  quesition_id: @quesition.id), class: "form") do |form| %>
-  <%= form.hidden_field :quesition_id, value: @quesition.id %>
-  <%= form.hidden_field :contestant_id, value: @contestant.id %>
-
-  <% 1.upto(4) do |answer_index| %>
-    <div class="form-check">
-      <%= form.radio_button :selected_answer_id, answer_index %>
-      <%= form.label "answer#{answer_index}", class: "form-check-label" do %>
-        <%= @quesition.send("answer#{answer_index}") %>
-      <% end %>
+      <span id="timer-text">Time remaining:</span>
+      <span id="timer-counter">60</span> seconds
     </div>
-  <% end %>
 
-  <%= form.submit "Submit Answer", class: "btn btn-primary" %>
-<% end %>
+    <%= form_with(model: @submission, url: submissions_path(quizo_id: @quizo.id, contestant_id: @contestant.id,  quesition_id: @quesition.id), class: "form") do |form| %>
+      <%= form.hidden_field :quesition_id, value: @quesition.id %>
+      <%= form.hidden_field :contestant_id, value: @contestant.id %>
 
+      <% 1.upto(4) do |answer_index| %>
+        <div class="form-check">
+          <%= form.radio_button :selected_answer_id, answer_index %>
+          <%= form.label "answer#{answer_index}", class: "form-check-label" do %>
+            <span style="font-weight: bold; font-size: 20px;">
+              <%= @quesition.send("answer#{answer_index}") %>
+            </span>
+          <% end %>
+        </div>
+      <% end %>
 
+      <%= form.submit "Submit Answer", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
 
 
 
